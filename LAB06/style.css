@@ -1,0 +1,23 @@
+
+/* Estilos para a página 'Animation.html' */
+body {
+    background-color:red; /* Cor de fundo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#container {
+    text-align: center;
+    background-color:black;
+}
+
+/* Se você quiser aplicar estilos no canvas */
+canvas {
+    border: 2px solid #000;
+}
+
+
+
