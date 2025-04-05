@@ -22,8 +22,8 @@ function updateImagePosition(event) {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height); 
 
-    const width = 30;
-    const height = 30;
+    const width = 40;
+    const height = 40;
 
     ctx.drawImage(image, mouseX - width / 2, mouseY - height / 2, width, height); 
 }
