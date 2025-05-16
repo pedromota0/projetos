@@ -10,10 +10,10 @@ function checkGuess() {
     message.style.backgroundColor = 'red';
   } else if (userGuess < randomNumber) {
     message.textContent = 'Tente um número maior.';
-    message.style.backgroundColor = 'yellow';
+    message.style.backgroundColor = 'red';
   } else if (userGuess > randomNumber) {
     message.textContent = 'Tente um número menor.';
-    message.style.backgroundColor = 'yellow';
+    message.style.backgroundColor = 'red';
   } else {
     message.textContent = 'Parabéns! Você acertou!';
     message.style.backgroundColor = 'green';
