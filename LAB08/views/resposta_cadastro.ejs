@@ -2,16 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Title</title>
+<title>Status</title>
 <link href="estilo.css" rel="stylesheet">
 </head>
 <body>
-<h1>Resposta para o usuário:</h1>
+  <h1>Status do Sistema</h1>
 
-<p>Nome: <%= nome %> </p>
-<p>Sobrenome: <%= sobrenome %> </p>
-<p>Nascimento: <%= nascimento %> </p>
-<p>Estado civil: <%= civil %> </p>
+  <% if (status) { %>
+    <p><%= status %></p>
+  <% } %>
 
+  <% if (nome) { %>
+    <p>Nome: <%= nome %></p>
+    <p>Sobrenome: <%= sobrenome %></p>
+    <p>Nascimento: <%= nascimento %></p>
+    <p>Estado civil: <%= civil %></p>
+  <% } %>
+
+  <a href="/Projects.html">Voltar para Projetos</a>
 </body>
 </html>

@@ -1,39 +1,81 @@
-var http = require('http');
-var express = require('express');
-var colors = require('colors');
-var bodyParser = require('body-parser');
+const http = require('http');
+const express = require('express');
+const colors = require('colors');
+const bodyParser = require('body-parser');
 
-var app = express();
+const app = express();
+
 app.use(express.static('./public'));
-app.use(bodyParser.urlencoded({ extended: false}))
-app.use(bodyParser.json())
-app.set('view engine', 'ejs')
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.set('view engine', 'ejs');
 app.set('views', './views');
 
-var server = http.createServer(app);
+const server = http.createServer(app);
 server.listen(80);
 
 console.log('Servidor rodando ...'.rainbow);
 
-app.get('/', function (requisicao, resposta){
-resposta.redirect('home.html')
-})
+// Simula banco de usuários (array na memória)
+const usuarios = [];
 
-app.get('/inicio', function (requisicao, resposta){
-var nome = requisicao.query.info;
-console.log(nome);
-})
+// Rota raiz deve redirecionar para Projects.html (página de projetos)
+app.get('/', (req, res) => {
+  res.redirect('/Projects.html');
+});
 
-app.post('/inicio', function (requisicao, resposta){
-var data = requisicao.body.data;
-console.log(data);
-})
+// Rota para abrir o formulário de cadastro
+app.get('/cadastra', (req, res) => {
+  res.sendFile(__dirname + '/public/Cadastro.html');
+});
 
-app.get('/cadastro',function (requisicao, resposta){
-var nome = requisicao.query.nome;
-var sobrenome = requisicao.query.sobrenome;
-var nascimento = requisicao.query.nascimento;
-var civil = requisicao.query.civil;
+// Recebe cadastro (POST), salva e responde com página dinâmica
+app.post('/cadastra', (req, res) => {
+  const { usuario, senha, email, time } = req.body;
 
-resposta.render('resposta_cadastro', {nome, sobrenome, nascimento, civil})
-})
+  if (!usuario || !senha || !email || !time) {
+    return res.render('resposta', { status: 'Erro: Preencha todos os campos.' });
+  }
+
+  // Verifica se usuário já existe
+  const jaExiste = usuarios.find(u => u.usuario === usuario);
+  if (jaExiste) {
+    return res.render('resposta', { status: 'Erro: Usuário já cadastrado.' });
+  }
+
+  usuarios.push({ usuario, senha, email, time });
+
+  res.render('resposta', { status: `Usuário ${usuario} cadastrado com sucesso!` });
+});
+
+// Rota para abrir o formulário de login
+app.get('/login', (req, res) => {
+  res.sendFile(__dirname + '/public/Login.html');
+});
+
+// Recebe login (POST), valida e responde com página dinâmica
+app.post('/login', (req, res) => {
+  const { usuario, senha } = req.body;
+
+  if (!usuario || !senha) {
+    return res.render('resposta', { status: 'Preencha usuário e senha.' });
+  }
+
+  const user = usuarios.find(u => u.usuario === usuario && u.senha === senha);
+
+  if (user) {
+    res.render('resposta', { status: `Login realizado com sucesso. Bem-vindo, ${usuario}!` });
+  } else {
+    res.render('resposta', { status: 'Usuário ou senha inválidos.' });
+  }
+});
+
+// Rota /cadastro (GET) para responder dados do formulário antigo
+app.get('/cadastro', (req, res) => {
+  const { nome, sobrenome, nascimento, civil } = req.query;
+  res.render('resposta', { nome, sobrenome, nascimento, civil });
+});
+
+// Suas outras rotas GET e POST para /inicio, etc, podem ficar aqui, se precisar
+

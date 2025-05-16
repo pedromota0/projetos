@@ -1,4 +1,81 @@
-Body{
-        background-color: #f0f8ff;
-    }
-    
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Corpo da página: centralizar conteúdo vertical e horizontalmente */
+  body {
+    background-color: #f0f0f0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Container dos formulários */
+  .container {
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    width: 320px;
+  }
+  
+  /* Título do formulário */
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo dos inputs */
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  input[type="email"] {
+    width: 100%;
+    padding: 10px 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+  }
+  
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  input[type="date"]:focus,
+  input[type="email"]:focus {
+    border-color: #357edd;
+    outline: none;
+  }
+  
+  /* Botão de submit */
+  button, input[type="submit"] {
+    width: 100%;
+    background-color: #357edd;
+    color: white;
+    border: none;
+    padding: 12px 0;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover, input[type="submit"]:hover {
+    background-color: #285bb5;
+  }
+  
+  /* Parágrafo dos inputs */
+  p {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  
