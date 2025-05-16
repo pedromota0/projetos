@@ -16,8 +16,12 @@ app.listen(80, () => {
 
 // Rota padrão -> Projects.html
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'Projects.html'));
+  db.all('SELECT * FROM posts', (err, rows) => {
+    if (err) return res.status(500).send('Erro no banco de dados.');
+    res.render('blog', { posts: rows });
+  });
 });
+
 
 // Página do blog
 app.get('/blog', (req, res) => {
