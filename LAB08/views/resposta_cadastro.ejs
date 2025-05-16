@@ -1,24 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Status</title>
-<link rel="stylesheet" href="estilo.css" />
+  <meta charset="UTF-8">
+  <title>Status do Login</title>
+  <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-  <h1>Status do Sistema</h1>
-
-  <% if (status) { %>
-    <p><%= status %></p>
-  <% } %>
-
-  <% if (nome) { %>
-    <p>Nome: <%= nome %></p>
-    <p>Sobrenome: <%= sobrenome %></p>
-    <p>Nascimento: <%= nascimento %></p>
-    <p>Estado civil: <%= civil %></p>
-  <% } %>
-
-  <a href="/LAB02/projects.html">Voltar para Projetos</a>
+  <div class="container">
+    <h1><%= status %></h1>
+    <% if (user) { %>
+      <p>Bem-vindo, <strong><%= user %></strong>!</p>
+    <% } %>
+  </div>
 </body>
 </html>
