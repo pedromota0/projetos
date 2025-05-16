@@ -22,7 +22,7 @@ const usuarios = [];
 
 // Rota raiz deve redirecionar para Projects.html (página de projetos)
 app.get('/', (req, res) => {
-  res.redirect('/Projects.html');
+  res.redirect('../login.html');
 });
 
 // Rota para abrir o formulário de cadastro
@@ -76,6 +76,4 @@ app.get('/cadastro', (req, res) => {
   const { nome, sobrenome, nascimento, civil } = req.query;
   res.render('resposta', { nome, sobrenome, nascimento, civil });
 });
-
-// Suas outras rotas GET e POST para /inicio, etc, podem ficar aqui, se precisar
 
