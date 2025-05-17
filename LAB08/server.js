@@ -4,13 +4,15 @@ const path = require('path');
 
 const app = express();
 
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
 const users = [];
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'home.html'));  // página inicial
+});
 
 app.get('/cadastra', (req, res) => {
   res.sendFile(path.join(__dirname, 'cadastro.html'));
@@ -36,6 +38,9 @@ app.post('/login', (req, res) => {
   }
 });
 
-app.listen(80, () => {
-  console.log('Servidor rodando na porta 80');
+const PORT = 3000;  // porta alterada
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
+s
