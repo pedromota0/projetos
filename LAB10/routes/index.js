@@ -14,6 +14,19 @@ router.post("/cadastro", async (req, res) => {
 });
 
 router.get("/login", (req, res) => res.render("login"));
+router.post("/login", async (req, res) => {
+  const { login, senha } = req.body;
+  const usuario = await Usuario.findOne({ login });
+
+  if (!usuario || usuario.senha !== senha) {
+    // credenciais inválidas
+    return res.send("Login ou senha inválidos");
+  }
+
+  // login bem-sucedido (aqui você pode salvar sessão depois)
+  res.redirect("/carros");
+});
+
 
 router.get("/carros", async (req, res) => {
   const carros = await Carro.find();
